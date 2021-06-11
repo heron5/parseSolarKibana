@@ -105,12 +105,21 @@ public class Main {
         Response response = null;
         try {
             response = restClient.performRequest(request);
-            restClient.close();
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("Retrying update...");
+        } finally {
+            try {
+                restClient.close();
+            } catch (IOException closeEx){
+                closeEx.printStackTrace();
+            }
+
+            if (loggLevel > 0)
+                System.out.println(response);
+
         }
-        if (loggLevel > 0)
-            System.out.println(response);
+
     }
 
 
@@ -222,6 +231,7 @@ public class Main {
 
                 public void connectionLost(Throwable cause) {
                     System.out.println("Connection to KjulaData messaging lost!" + cause);
+                    System.exit(0);
                 }
 
                 public void deliveryComplete(IMqttDeliveryToken token) {

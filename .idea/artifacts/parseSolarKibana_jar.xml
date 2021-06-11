@@ -16,7 +16,7 @@
         <element id="directory" name="META-INF">
           <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
         </element>
-        <element id="module-output" name="parseSolarKibana" />
+        <element id="module-output" name="parseEnvironmentKibana" />
       </element>
     </root>
   </artifact>
